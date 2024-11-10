@@ -84,10 +84,23 @@ resolution: "Resolution er for liten, gjør terminalen større og kjør spillet 
 
 }
 
+const MAGICSTRINGREMOVER = {
+
+    languageMenu: "Language Menu",
+    mapLayout: "Map layout",
+    en: "en",
+    no: "no",
+    mainMenu: "Main Menu",
+
+
+}
+
+let char = MAGICSTRINGREMOVER;
+
 let language = DICTIONARY.en;
 
 function changeLanguage(lang) {
     language = DICTIONARY[lang];
 }
 
-export { DICTIONARY, language, changeLanguage }
+export { DICTIONARY, language, changeLanguage, char }

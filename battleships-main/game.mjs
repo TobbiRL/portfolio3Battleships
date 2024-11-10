@@ -6,8 +6,7 @@ import createMenu from "./utils/menu.mjs";
 import createMapLayoutScreen from "./game/mapLayoutScreen.mjs";
 import createInnBetweenScreen from "./game/innbetweenScreen.mjs";
 import createBattleshipScreen from "./game/battleshipsScreen.mjs";
-import { language, changeLanguage } from "./game/language.mjs";
-import { clear } from "console";
+import { language, changeLanguage, char } from "./game/language.mjs";
 import { create2DArrayWithFill } from "./utils/array.mjs";
 
 const MAIN_MENU_ITEMS = buildMenu();
@@ -90,14 +89,14 @@ function buildMenu() {
 
                 }, 3);
                 currentState.next = innbetween;
-                currentState.transitionTo = "Map layout";
+                currentState.transitionTo = char.mapLayout;
             }
         },
         { text: language.language_settings, id: menuItemCount++, action: function () {
             clearScreen();
             languageMenu = createMenu(buildLanguageMenu());
             currentState.next = languageMenu;
-            currentState.transitionTo = "Language Menu";
+            currentState.transitionTo = char.languageMenu;
         } },
     
         { text: language.exit_game, id: menuItemCount++, action: function () { print(ANSI.SHOW_CURSOR); clearScreen(); process.exit(); } },
@@ -109,17 +108,17 @@ function buildLanguageMenu() {
     
     return [
        { text: language.english, id: menuItemCount++, action: function () {
-        changeLanguage("en");
+        changeLanguage(char.en);
         mainMenuScene = createMenu(buildMenu())
         currentState.next = mainMenuScene;
-        currentState.transitionTo = "Main Menu";
+        currentState.transitionTo = char.mainMenu;
     } },
 
     { text: language.norwegian, id: menuItemCount++, action: function () {
-        changeLanguage("no");
+        changeLanguage(char.no);
         mainMenuScene = createMenu(buildMenu())
         currentState.next = mainMenuScene;
-        currentState.transitionTo = "Main Menu";
+        currentState.transitionTo = char.mainMenu;
     } }
     ]
 }
