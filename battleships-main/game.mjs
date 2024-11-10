@@ -1,5 +1,5 @@
 import { ANSI } from "./utils/ansi.mjs";
-import { print, clearScreen } from "./utils/io.mjs";
+import { print, clearScreen, printCenterd } from "./utils/io.mjs";
 import SplashScreen from "./game/splash.mjs";
 import { FIRST_PLAYER, SECOND_PLAYER } from "./consts.mjs";
 import createMenu from "./utils/menu.mjs";
@@ -20,6 +20,7 @@ let mainMenuScene = null;
 let languageMenuScene = null;
 
 (function initialize() {
+    resolutionTest();
     print(ANSI.HIDE_CURSOR);
     clearScreen();
     mainMenuScene = createMenu(MAIN_MENU_ITEMS);
@@ -36,6 +37,13 @@ function update() {
         currentState = currentState.next;
         print(ANSI.CLEAR_SCREEN, ANSI.CURSOR_HOME);
     }
+}
+
+function resolutionTest() {
+    if (process.stdout.rows < 25)
+        clearScreen();
+        printCenterd("Window too small, increase window to play game");
+        process.exit();
 }
 
 // Suport / Utility functions ---------------------------------------------------------------
@@ -72,7 +80,7 @@ function buildMenu() {
                 currentState.transitionTo = "Map layout";
             }
         },
-        { text: "Choose Language", id: menuItemCount++, action: function () {buildLanguageMenu()}},
+    
         { text: "Exit Game", id: menuItemCount++, action: function () { print(ANSI.SHOW_CURSOR); clearScreen(); process.exit(); } },
     ];
 }
