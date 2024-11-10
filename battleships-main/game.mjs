@@ -14,9 +14,9 @@ const MAIN_MENU_ITEMS = buildMenu();
 
 
 
-const GAME_FPS = 1000 / 60; // The theoretical refresh rate of our game engine
-let currentState = null;    // The current active state in our finite-state machine.
-let gameLoop = null;        // Variable that keeps a refrence to the interval id assigned to our game loop 
+const GAME_FPS = 1000 / 60; 
+let currentState = null;  
+let gameLoop = null;        
 
 let mainMenuScene = null;
 let languageMenu = null;
@@ -27,8 +27,8 @@ let languageMenu = null;
     clearScreen();
     mainMenuScene = createMenu(MAIN_MENU_ITEMS);
     SplashScreen.next = mainMenuScene;
-    currentState = SplashScreen  // This is where we decide what state our finite-state machine will start in. 
-    gameLoop = setInterval(update, GAME_FPS); // The game is started.
+    currentState = SplashScreen
+    gameLoop = setInterval(update, GAME_FPS);
 })();
 
 function update() {
@@ -47,8 +47,6 @@ function resolutionTest() {
         process.exit(); 
 }
 }
-
-// Suport / Utility functions ---------------------------------------------------------------
 
 function buildMenu() {
     let menuItemCount = 0;
