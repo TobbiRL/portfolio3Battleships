@@ -20,7 +20,7 @@ let mainMenuScene = null;
 let languageMenuScene = null;
 
 (function initialize() {
-    resolutionTest()
+    resolutionTest();
     print(ANSI.HIDE_CURSOR);
     clearScreen();
     mainMenuScene = createMenu(MAIN_MENU_ITEMS);
