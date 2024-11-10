@@ -37,6 +37,7 @@ info: "Info",
 hitMarker: "Hit",
 missMarker: "Miss",
 marker: "Cursor",
+resolution: "Resolution is too small, make the terminal bigger and restart the game",
 
 },
 
@@ -77,6 +78,7 @@ info: "Info",
 hitMarker: "Treff",
 missMarker: "Bom",
 marker: "Markør",
+resolution: "Resolution er for liten, gjør terminalen større og kjør spillet på nytt",
 
 },
 

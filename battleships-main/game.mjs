@@ -43,7 +43,7 @@ function update() {
 function resolutionTest() {
     if (process.stdout.rows < 25) {
         clearScreen();
-        printCentered("Resolution too small");
+        printCentered(language.resolution);
         process.exit(); 
 }
 }
