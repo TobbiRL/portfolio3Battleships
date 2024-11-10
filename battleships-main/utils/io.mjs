@@ -96,7 +96,7 @@ function print(...text) {
     process.stdout.write(`${text.join("")}`);
 }
 
-function printCenterd(text) {
+function printCentered(text) {
     const textBounds = calculateStringBounds(text);
     const sr = Math.round((process.stdout.rows - textBounds.height) * 0.5);
     const sc = Math.round((process.stdout.columns - textBounds.width) * 0.5);
@@ -120,4 +120,4 @@ function clearScreen() {
 }
 
 export default KeyBoardManager;
-export { print, printLine, printCenterd, clearScreen }
+export { print, printLine, printCentered, clearScreen }
