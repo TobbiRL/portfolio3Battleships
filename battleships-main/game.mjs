@@ -61,14 +61,14 @@ function buildMenu() {
             text: language.START_GAME, id: menuItemCount++, action: function () {
                 clearScreen();
                 let innbetween = createInnBetweenScreen();
-                innbetween.init(`SHIP PLACMENT\nFirst player get ready.\nPlayer two look away`, () => {
+                innbetween.init(language.SHIP_PLACEMENT + "\n" + language.PLAYER_ONE_READY + "\n" + language.PLAYER_TWO_NOLOOK, () => {
 
                     let p1map = createMapLayoutScreen();
                     p1map.init(FIRST_PLAYER, (player1ShipMap) => {
 
 
                         let innbetween = createInnBetweenScreen();
-                        innbetween.init(`SHIP PLACMENT\nSecond player get ready.\nPlayer one look away`, () => {
+                        innbetween.init(language.SHIP_PLACEMENT + "\n" + language.PLAYER_TWO_READY + "\n" + language.PLAYER_ONE_NOLOOK, () => {
                             let p2map = createMapLayoutScreen();
                             p2map.init(SECOND_PLAYER, (player2ShipMap) => {
                                 return createBattleshipScreen(player1ShipMap, player2ShipMap);
@@ -100,14 +100,14 @@ function buildLanguageMenu() {
     let menuItemCount = 0;
     
     return [
-       { text: "English", id: menuItemCount++, action: function () {
+       { text: language.ENGLISH, id: menuItemCount++, action: function () {
         changeLanguage("en");
         mainMenuScene = createMenu(buildMenu())
         currentState.next = mainMenuScene;
         currentState.transitionTo = "Main Menu";
     } },
 
-    { text: "Norwegian", id: menuItemCount++, action: function () {
+    { text: language.NORWEGIAN, id: menuItemCount++, action: function () {
         changeLanguage("no");
         mainMenuScene = createMenu(buildMenu())
         currentState.next = mainMenuScene;
