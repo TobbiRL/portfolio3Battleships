@@ -20,15 +20,16 @@ let mainMenuScene = null;
 let languageMenuScene = null;
 
 (function initialize() {
-    resolutionTest();
+    resolutionTest()
     print(ANSI.HIDE_CURSOR);
     clearScreen();
     mainMenuScene = createMenu(MAIN_MENU_ITEMS);
-    languageMenuScene = createMenu(LANGUAGE_MENU_ITEMS);
+
     SplashScreen.next = mainMenuScene;
     currentState = SplashScreen  // This is where we decide what state our finite-state machine will start in. 
     gameLoop = setInterval(update, GAME_FPS); // The game is started.
 })();
+
 
 function update() {
     currentState.update(GAME_FPS);
@@ -40,11 +41,13 @@ function update() {
 }
 
 function resolutionTest() {
-    if (process.stdout.rows < 25)
+    if (process.stdout.rows < 25) {
         clearScreen();
-        printCenterd("Window too small, increase window to play game");
-        process.exit();
+        printCenterd("Resolution too small");
+        process.exit(); 
 }
+}
+
 
 // Suport / Utility functions ---------------------------------------------------------------
 
