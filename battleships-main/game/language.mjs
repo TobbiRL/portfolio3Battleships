@@ -18,8 +18,14 @@ SHIP_PLACEMENT_START_PLAYER_TWO: `SKIP PLASSERING\nSpiller 2 gjør deg klar.\nSp
 EXIT_GAME: "Slutt spill",
 LANGUAGE_SETTINGS: "Språk Instillinger",
 
-}
+},
 
 }
 
-export default DICTIONARY
+let language = DICTIONARY.en;
+
+function changeLanguage(lang) {
+    language = DICTIONARY[lang];
+}
+
+export { DICTIONARY, language, changeLanguage }

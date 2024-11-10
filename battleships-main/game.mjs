@@ -6,18 +6,18 @@ import createMenu from "./utils/menu.mjs";
 import createMapLayoutScreen from "./game/mapLayoutScreen.mjs";
 import createInnBetweenScreen from "./game/innbetweenScreen.mjs";
 import createBattleshipScreen from "./game/battleshipsScreen.mjs";
-import DICTIONARY from "./game/language.mjs";
+import { DICTIONARY, language, changeLanguage } from "./game/language.mjs";
 import { clear } from "console";
 
 const MAIN_MENU_ITEMS = buildMenu();
-const LANGUAGE_MENU_ITEMS = buildLanguageMenu();
+
 
 const GAME_FPS = 1000 / 60; // The theoretical refresh rate of our game engine
 let currentState = null;    // The current active state in our finite-state machine.
 let gameLoop = null;        // Variable that keeps a refrence to the interval id assigned to our game loop 
 
 let mainMenuScene = null;
-let languageMenuScene = null;
+let languageMenu = null;
 
 (function initialize() {
     resolutionTest();
@@ -25,7 +25,9 @@ let languageMenuScene = null;
     clearScreen();
     mainMenuScene = createMenu(MAIN_MENU_ITEMS);
 
+
     SplashScreen.next = mainMenuScene;
+
     currentState = SplashScreen  // This is where we decide what state our finite-state machine will start in. 
     gameLoop = setInterval(update, GAME_FPS); // The game is started.
 })();
@@ -56,7 +58,7 @@ function buildMenu() {
 
     return [
         {
-            text: "Start Game", id: menuItemCount++, action: function () {
+            text: language.START_GAME, id: menuItemCount++, action: function () {
                 clearScreen();
                 let innbetween = createInnBetweenScreen();
                 innbetween.init(`SHIP PLACMENT\nFirst player get ready.\nPlayer two look away`, () => {
@@ -83,23 +85,33 @@ function buildMenu() {
                 currentState.transitionTo = "Map layout";
             }
         },
+        { text: language.LANGUAGE_SETTINGS, id: menuItemCount++, action: function () {
+            clearScreen();
+            languageMenu = createMenu(buildLanguageMenu());
+            currentState.next = languageMenu;
+            currentState.transitionTo = "Language Menu";
+        } },
     
-        { text: "Exit Game", id: menuItemCount++, action: function () { print(ANSI.SHOW_CURSOR); clearScreen(); process.exit(); } },
+        { text: language.EXIT_GAME, id: menuItemCount++, action: function () { print(ANSI.SHOW_CURSOR); clearScreen(); process.exit(); } },
     ];
 }
 
 function buildLanguageMenu() {
-    let currentLanguage = 0;
+    let menuItemCount = 0;
     
     return [
-       { text: "English", id: currentLanguage++, action: function () {
-        language = DICTIONARY.en
-       } 
-    },
-    { text: "Norwegian", id: currentLanguage++, action: function () {
-        language = DICTIONARY.no
-       } 
-    },
+       { text: "English", id: menuItemCount++, action: function () {
+        changeLanguage("en");
+        mainMenuScene = createMenu(buildMenu())
+        currentState.next = mainMenuScene;
+        currentState.transitionTo = "Main Menu";
+    } },
+
+    { text: "Norwegian", id: menuItemCount++, action: function () {
+        changeLanguage("no");
+        mainMenuScene = createMenu(buildMenu())
+        currentState.next = mainMenuScene;
+        currentState.transitionTo = "Main Menu";
+    } }
     ]
 }
-
