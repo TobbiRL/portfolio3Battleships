@@ -6,7 +6,6 @@ import { language } from "./language.mjs";
 import createMenu from "../utils/menu.mjs";
 import buildMenu from "../game.mjs";
  
-
 const createBattleshipScreen = () => {
     let currentPlayer = FIRST_PLAYER;
     let firstPlayerBoard = null;
@@ -29,7 +28,9 @@ const createBattleshipScreen = () => {
             currentBoard = secondPlayerBoard;
             opponentBoard = firstPlayerBoard;
         }
-        turnMessage = currentPlayer === FIRST_PLAYER ? language.player1Turn : language.player2Turn;
+        turnMessage = currentPlayer === FIRST_PLAYER ? 
+        language.player1Turn : 
+        language.player2Turn;
     }
 
     function isAllShipsSunk(board) {
@@ -90,7 +91,6 @@ const createBattleshipScreen = () => {
         }
         output += '\n';
     
-    
         for (let y = 0; y < GAME_BOARD_DIM; y++) {
             output += `${String(y + 1).padStart(2, ' ')} `;
             for (let x = 0; x < GAME_BOARD_DIM; x++) {
@@ -129,7 +129,9 @@ const createBattleshipScreen = () => {
             secondPlayerBoard = secondPBoard;
             currentBoard = firstPlayerBoard;
             opponentBoard = secondPlayerBoard;
-            turnMessage = currentPlayer === FIRST_PLAYER ? language.player1Turn : language.player2Turn;
+            turnMessage = currentPlayer === FIRST_PLAYER ? 
+            language.player1Turn : 
+            language.player2Turn;
         },
         
 
