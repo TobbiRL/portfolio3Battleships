@@ -11,8 +11,6 @@ import { create2DArrayWithFill } from "./utils/array.mjs";
 
 const MAIN_MENU_ITEMS = buildMenu();
 
-
-
 const GAME_FPS = 1000 / 60; 
 let currentState = null;  
 let gameLoop = null;        
